@@ -1,0 +1,47 @@
+﻿@model List<Artical>
+
+<h1 style="color:lightblue">Artical Section</h1>
+
+<a class="btn btn-primary" asp-action="Add" asp-controller="Artical">Add Artical</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Departmet Name</th>
+            <th scope="col">Related Topic</th>
+            <th scope="col">Latest Publish Date</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr class="table-active">
+                <td>@item.Name</td>
+                <td><img src="~/Images/@item.ImgURL" style="width:50px" /></td>
+                <td>
+                    @if (item.ArticalsAuthors != null && item.ArticalsAuthors.Any())
+                    {
+                        @foreach (var aa in item.ArticalsAuthors)
+                        {
+                            <span>@aa.authoer.Name</span> <br />
+                        }
+                    }
+                    else
+                    {
+                        <p>No authors available</p>
+                    }
+                </td>
+                <td>@item.Dept?.Name</td>
+                <td>@item.topic?.Name</td>
+                <td>@item.ArticalsAuthors.Max(aa => (DateTime?)aa.PublishDate)?.ToShortDateString()</td>
+
+                <td>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+﻿@model List<Topic>
+
+
+<h1 style="color:lightblue">Topic Section</h1>
+<br />
+<br />
+
+@foreach(var item in Model)
+{
+    <div class="border-bottom mb-2" >
+        @{
+            if (@item.Articals.Count() > 2)
+            {
+                <h3>
+                <i class="fa-solid fa-check-double" style="color:green;"></i>
+                @item.Name: has 
+                <span style="color:darkslateblue">@item.Articals.Count()</span>
+                Artical</h3>
+
+            }
+            else
+            {
+                <h3>@item.Name: has <span style="color:darkslateblue">@item.Articals.Count()</span> Author</h3>
+
+            }
+        }
+        
+    </div>
+}

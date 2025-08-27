@@ -1,0 +1,43 @@
+﻿
+@model Author
+@{
+    SelectList deptOptions = new SelectList(ViewBag.DeptList, "Id", "Name");
+    SelectList GenOptions = new SelectList(ViewBag.Genders, "Value", "Text");
+
+}
+<h1>Add Author</h1>
+<form method="post" asp-action="SaveAdd" asp-controller="Author">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form  form-control" />
+    </div>
+    <div>
+        <label asp-for="DOB"></label>
+        <input asp-for="DOB" class="form  form-control" />
+    </div>
+    <div>
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form  form-control" />
+    </div>
+    <div>
+        <label asp-for="Salary"></label>
+        <input asp-for="Salary" class="form  form-control" />
+    </div>
+    <div>
+        <label asp-for="Gender"></label>
+        <select class="form-control"
+                asp-for="Gender"
+                asp-items="GenOptions">
+        </select>
+    </div>
+    <div>
+        <label asp-for="DepartmentId"></label>
+        <select class="form  form-control"
+                asp-items="deptOptions"
+                asp-for="DepartmentId">
+        </select>
+    </div>
+    <input type="submit" value="Create" class="btn btn-outline-success" />
+
+</form>
+<a class="btn btn-primary" asp-action="Index">Back</a>
